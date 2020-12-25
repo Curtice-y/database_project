@@ -57,6 +57,7 @@
 </template>""
 
 <script>
+import { setCookie } from '../plugins/cookie.js'
 export default {
   data () {
     // 绑定对象
@@ -108,7 +109,7 @@ export default {
         this.$http.get(`/user?serialNumber=${this.loginForm.serialNumber}&password=${this.loginForm.password}`)
           .then(response => {
             // console.log(response)
-            setCookie('serialNumber',response.serialNumber,1000*60)
+            setCookie('serialNumber', response.serialNumber, 1000 * 60)
             this.$message.success('登录成功')
             this.$router.push('/home')
           })
