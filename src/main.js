@@ -7,7 +7,9 @@ import './plugins/cookie.js'
 import './assets/css/global.css'
 
 import axios from 'axios'
+
 axios.defaults.baseURL = '/api'
+
 Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
