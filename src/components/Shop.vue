@@ -9,7 +9,7 @@
                 <li v-for="item in ItemList" :key="item">
                 <span class="foodImg"><img :src="item.picture" width="50" height="50"></span>
                 <span class="Left">{{item.name}}</span>
-                <span class="Right"><el-button type="primary" @click="buy(item.id)">购买</el-button></span>
+                <span class="Right"><el-button type="primary" @click="open(item.id)">购买</el-button></span>
                 <span class="foodPrice">￥{{ item.price}}元</span>
                 </li>
             </ul>
@@ -20,27 +20,7 @@
 export default {
     data () {
         return{
-            ItemList: [],
-            foodList: [
-                 {
-                goodsId: 4,
-                goodsImg: "https://pic-bed.xyz/res/userFiles/yoshiki/136.jpg",
-                goodsName: "快乐全家桶",
-                price: 80
-                },
-                {
-                goodsId: 5,
-                goodsImg: "https://pic-bed.xyz/res/userFiles/yoshiki/123.jpg",
-                goodsName: "脆皮炸鸡腿",
-                price: 10
-                },
-                {
-                goodsId: 6,
-                goodsImg: "https://pic-bed.xyz/res/userFiles/yoshiki/131.jpg",
-                goodsName: "魔法鸡块",
-                price: 20
-                },
-            ],
+            ItemList: []
         }
     },
     created () {
@@ -55,6 +35,26 @@ export default {
          .catch(error => {
             console.log(error)
          })
+      },
+      open(id){
+            const token = window.sessionStorage.getItem('token')
+            this.$confirm('确认购买此商品', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+            }).then(() => {
+            console.log('success')
+            this.buy(id)
+            this.$message({
+                type: 'success',
+                message: '确认购买!'
+            })
+            }).catch(() => {
+            this.$message({
+                type: 'info',
+                message: '取消'
+            })
+            })
       },
       buy(id){
         const token = window.sessionStorage.getItem('token')
