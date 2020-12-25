@@ -1,27 +1,44 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Router from 'vue-router'
+import Login from '../components/Login.vue'
 
-Vue.use(VueRouter)
+import Home from '../components/Home.vue'
+import UserInfo from '../components/user/UserInfo.vue'
+import PurchaseHis from '../components/user/PurchaseHis.vue'
+import Putaway from '../components/user/Putaway.vue'
+import Shop from '../components/Shop.vue'
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
-]
+import Console from '../components/Console.vue'
+import AdminInfo from '../components/admin/AdminInfo.vue'
+import CommodityInfo from '../components/admin/CommodityInfo.vue'
+import TransactionRecord from '../components/admin/TransactionRecord.vue'
 
-const router = new VueRouter({
-  routes
+Vue.use(Router)
+
+export default new Router({
+  routes: [
+    { path: '/', redirect: '/login' },
+    { path: '/login', component: Login },
+    {
+      path: '/home',
+      component: Home,
+      redirect: '/userinfo',
+      children: [
+        { path: '/userinfo', component: UserInfo },
+        { path: '/purchasehis', component: PurchaseHis },
+        { path: '/putaway', component: Putaway },
+        { path: '/shop', component: Shop }
+      ]
+    },
+    {
+      path: '/console',
+      component: Console,
+      redirect: '/admininfo',
+      children: [
+        { path: '/admininfo', component: AdminInfo },
+        { path: '/commodityinfo', component: CommodityInfo },
+        { path: '/transactionrecord', component: TransactionRecord }
+      ]
+    }
+  ]
 })
-
-export default router
