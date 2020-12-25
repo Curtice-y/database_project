@@ -19,11 +19,40 @@
         <el-form-item class="btns">
           <el-button @click="studentLogin">学生登录</el-button>
           <el-button @click="adminLogin">管理员登录</el-button>
-          <el-button type="primary" @click="register">注册</el-button>
+          <el-button type="primary" @click="dialogVisible = true">注册</el-button>
         </el-form-item>
       </el-form>
-      <el-dialog title="注册" :visible.sync="dialogVisible"></el-dialog>
     </div>
+    <!-- 注册对话框 -->
+    <el-dialog title="注册" :visible.sync="dialogVisible" width="50%" @close='dialogClose' :append-to-body="true">
+      <el-form ref="dialogFormRef" :model="dialogForm" :rules="dialogFormRules" label-width="90px">
+        <el-form-item label="账号" prop="serialNumber">
+          <el-input v-model="dialogForm.serialNumber"></el-input>
+        </el-form-item>
+        <el-form-item label="密码" prop="password">
+          <el-input v-model="dialogForm.password"></el-input>
+        </el-form-item>
+        <el-form-item label="姓名" prop="name">
+          <el-input v-model="dialogForm.name"></el-input>
+        </el-form-item>
+        <el-form-item label="性别">
+          <el-input v-model="dialogForm.sex"></el-input>
+        </el-form-item>
+        <el-form-item label="学院">
+          <el-input v-model="dialogForm.college"></el-input>
+        </el-form-item>
+        <el-form-item label="专业">
+          <el-input v-model="dialogForm.major"></el-input>
+        </el-form-item>
+        <el-form-item label="宿舍">
+          <el-input v-model="dialogForm.dormitory"></el-input>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogSure">确定</el-button>
+        <el-button @click="dialogVisible = false">取消</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>""
 
@@ -40,18 +69,35 @@ export default {
       // 表单的验证规则
       loginFormRules: {
         serialNumber: [
-          { required: true, message: '请输入登录账号', trigger: ['blur', 'change'] },
-          { min: 3, message: '账号最少需要 3 个字符', tigger: ['blur', 'change'] },
-          { max: 10, message: '账号不得超过 10 个字符', trigger: ['blur', 'change'] }
+          { required: true, message: '请输入登录账号', trigger: ['blur', 'change'] }
         ],
         password: [
-          { required: true, message: '请输入登录密码', trigger: ['blur', 'change'] },
-          { min: 6, message: '密码最少需要 6 个字符', trigger: ['blur', 'change'] },
-          { max: 10, message: '密码不得超过 10 个字符', trigger: ['blur', 'change'] }
+          { required: true, message: '请输入登录密码', trigger: ['blur', 'change'] }
         ]
       },
       // 是否显示对话框
-      dialogVisible: 'false'
+      dialogVisible: false,
+      dialogForm: {
+        serialNumber: '',
+        password: '',
+        name: '',
+        sex: '',
+        college: '',
+        major: '',
+        dormitory: ''
+      },
+      // 注册的验证规则
+      dialogFormRules: {
+        serialNumber: [
+          { required: true, message: '请输入登录账号', trigger: ['blur', 'change'] }
+        ],
+        name: [
+          { required: true, message: '请输入用户名', trigger: ['blur', 'change'] }
+        ],
+        password: [
+          { required: true, message: '请输入密码', trigger: ['blur', 'change'] }
+        ]
+      }
     }
   },
   methods: {
@@ -82,14 +128,34 @@ export default {
             this.$router.push('/console')
           })
           .catch(error => {
-            this.$message('账号或密码错误')
+            this.$message.error('账号或密码错误')
             console.log(error)
           })
       })
     },
-    // 注册
+    // 点击注册按钮
     register () {
       this.dialogVisible = true
+    },
+    // 对话框关闭
+    dialogClose () {
+      this.dialogVisible = false
+      this.$refs.dialogFormRef.resetFields()
+    },
+    // 点击对话框的确认
+    dialogSure () {
+      this.$refs.dialogFormRef.validate(valid => {
+        if (!valid) return
+        this.$http.post('/register', this.dialogForm)
+          .then(response => {
+            this.$message.success('注册成功')
+            this.dialogClose()
+          })
+          .catch(error => {
+            this.$message.error('注册失败')
+            console.log(error)
+          })
+      })
     }
   }
 }
