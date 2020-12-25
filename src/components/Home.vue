@@ -2,7 +2,8 @@
   <el-container>
     <!-- 头部区 -->
     <el-header>
-      <span>此处应有名字</span>
+      <span>E-commerce Website for SCUT</span>
+      <el-button type="info" @click="exit">退出登录</el-button>
     </el-header>
     <!-- 页面主体区 -->
     <el-container>
@@ -35,7 +36,14 @@
 </template>
 
 <script>
-export default {}
+export default {
+  methods: {
+    exit () {
+      window.sessionStorage.removeItem('token')
+      this.$router.push('/login')
+    }
+  }
+}
 </script>
 
 <style lang="less" scoped>

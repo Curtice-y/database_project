@@ -55,6 +55,7 @@ export default {
         .then(response => {
           console.log(response)
           this.$message.success('删除成功')
+          this.dialogClose()
           this.getRecordList()
         })
         .catch(error => {

@@ -17,3 +17,18 @@ new Vue({
   router,
   render: h => h(App)
 }).$mount('#app')
+
+// router.beforeEach((to, from, next) =>{
+//   if (window.sessionStorage.data) {
+//     console.log(window.sessionStorage);
+//       next();
+//   }
+//   else {
+//     if (to.path === '/login') {
+//       next();
+//     } 
+//     else {
+//       next({ path: '/login' });
+//     }
+//   }
+// })
