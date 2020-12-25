@@ -32,6 +32,7 @@
       </el-form-item>
       <el-form-item class='btns'>
           <el-button>修改用户信息</el-button>
+          <el-button>修改密码</el-button>
       </el-form-item>
     </el-form>
   </div>
