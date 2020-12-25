@@ -1,5 +1,10 @@
 <template>
-    <div>
-        <h3>commodityinfo</h3>
-    </div>
+    <div>commodityinfo</div>
 </template>
+
+<script>
+export default {}
+</script>
+
+<style lang="less" scoped>
+</style>

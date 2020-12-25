@@ -8,8 +8,8 @@
       <!-- 登陆表单区 -->
       <el-form ref="loginFormRef" :model= "loginForm" :rules="loginFormRules" label-width="80px"  class="Login_form">
         <!-- 用户名 -->
-        <el-form-item label="用户名" prop="username">
-          <el-input v-model="loginForm.username"></el-input>
+        <el-form-item label="用户名" prop="serialNumber">
+          <el-input v-model="loginForm.serialNumber"></el-input>
         </el-form-item>
         <!-- 密码 -->
         <el-form-item label="密码" prop="password">
@@ -33,12 +33,12 @@ export default {
     return {
       // 登录表单的绑定对象
       loginForm: {
-        username: '',
+        serialNumber: '',
         password: ''
       },
       // 表单的验证规则
       loginFormRules: {
-        username: [
+        serialNumber: [
           { required: true, message: '请输入登录用户名', trigger: ['blur', 'change'] },
           { min: 3, message: '用户名最少需要 3 个字符', tigger: ['blur', 'change'] },
           { max: 10, message: '用户名不得超过 10 个字符', trigger: ['blur', 'change'] }
@@ -53,10 +53,13 @@ export default {
   },
   methods: {
     studentLogin () {
-      this.$refs.loginFormRef.validate(valid => {
+      this.$refs.loginFormRef.validate(async valid => {
         if (!valid) return
-        this.$message.success('登陆成功')
-        this.$router.push('/home')
+        // console.log(`/user?serialNumber=${this.loginForm.serialNumber}&password=${this.loginForm.password}`)
+        const result = await this.$http.get(`/user?serialNumber=${this.loginForm.serialNumber}&password=${this.loginForm.password}`)
+        console.log(result)
+        // this.$message.success('登陆成功')
+        // this.$router.push('/home')
       })
     },
     adminLogin () {

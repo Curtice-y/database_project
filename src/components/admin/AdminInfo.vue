@@ -1,5 +1,10 @@
 <template>
-    <div>
-        <h3>admininfbsdgsdo</h3>
-    </div>
+    <div>admin</div>
 </template>
+
+<script>
+export default {}
+</script>
+
+<style lang="less" scoped>
+</style>

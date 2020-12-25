@@ -1,5 +1,10 @@
 <template>
-    <div>
-        <h3>transactionRecord</h3>
-    </div>
+    <div>trans</div>
 </template>
+
+<script>
+export default {}
+</script>
+
+<style lang="less" scoped>
+</style>
