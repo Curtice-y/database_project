@@ -107,7 +107,7 @@ export default {
         if (!valid) return
         this.$http.get(`/user?serialNumber=${this.loginForm.serialNumber}&password=${this.loginForm.password}`)
           .then(response => {
-            console.log(response)
+            // console.log(response)
             this.$message.success('登录成功')
             window.sessionStorage.setItem('token', response.data.serialNumber)
             this.$router.push('/home')
@@ -126,6 +126,7 @@ export default {
           .then(response => {
             // console.log(response)
             this.$message.success('登录成功')
+            window.sessionStorage.setItem('token', response.data.serialNumber)
             this.$router.push('/console')
           })
           .catch(error => {
