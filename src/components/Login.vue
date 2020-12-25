@@ -63,8 +63,8 @@ export default {
     return {
       // 登录表单的绑定对象
       loginForm: {
-        serialNumber: '201808',
-        password: '123456'
+        serialNumber: 'admin1',
+        password: '111111'
       },
       // 表单的验证规则
       loginFormRules: {
