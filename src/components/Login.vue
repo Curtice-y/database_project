@@ -63,8 +63,8 @@ export default {
     return {
       // 登录表单的绑定对象
       loginForm: {
-        serialNumber: '',
-        password: ''
+        serialNumber: '201808',
+        password: '123456'
       },
       // 表单的验证规则
       loginFormRules: {
@@ -107,8 +107,9 @@ export default {
         if (!valid) return
         this.$http.get(`/user?serialNumber=${this.loginForm.serialNumber}&password=${this.loginForm.password}`)
           .then(response => {
-            // console.log(response)
+            console.log(response)
             this.$message.success('登录成功')
+            window.sessionStorage.setItem('token', response.data.serialNumber)
             this.$router.push('/home')
           })
           .catch(error => {

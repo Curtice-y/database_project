@@ -44,20 +44,23 @@ export default {
     return {
       user: {
         serialNumber: '',
-        name: 'aaa',
+        name: '',
         sex: '',
         college: '',
         major: '',
-        dormitory: 'sss',
+        dormitory: '',
         password: '',
         birthday: ''
       }
     }
   },
   created () {
+    this.getUserInfo()
   },
   methods: {
     getUserInfo () {
+      const token = window.sessionStorage.getItem('token')
+      console.log(token)
     }
   }
 }
