@@ -44,7 +44,7 @@ export default {
       user: {
         serialNumber: '',
         name: 'aaa',
-        ser: '',
+        sex: '',
         college: '',
         major: '',
         dormitory: 'sss',
