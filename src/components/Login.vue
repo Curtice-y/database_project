@@ -35,16 +35,16 @@
         <el-form-item label="姓名" prop="name">
           <el-input v-model="dialogForm.name"></el-input>
         </el-form-item>
-        <el-form-item label="性别">
+        <el-form-item label="性别" prop="sex">
           <el-input v-model="dialogForm.sex"></el-input>
         </el-form-item>
-        <el-form-item label="学院">
+        <el-form-item label="学院" prop="college">
           <el-input v-model="dialogForm.college"></el-input>
         </el-form-item>
-        <el-form-item label="专业">
+        <el-form-item label="专业" prop="major">
           <el-input v-model="dialogForm.major"></el-input>
         </el-form-item>
-        <el-form-item label="宿舍">
+        <el-form-item label="宿舍" prop="dormitory">
           <el-input v-model="dialogForm.dormitory"></el-input>
         </el-form-item>
       </el-form>
