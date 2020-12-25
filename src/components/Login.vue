@@ -19,9 +19,10 @@
         <el-form-item class="btns">
           <el-button @click="studentLogin">学生登录</el-button>
           <el-button @click="adminLogin">管理员登录</el-button>
-          <el-button type="primary">注册</el-button>
+          <el-button type="primary" @click="register">注册</el-button>
         </el-form-item>
       </el-form>
+      <el-dialog title="注册" :visible.sync="dialogVisible"></el-dialog>
     </div>
   </div>
 </template>""
@@ -39,40 +40,56 @@ export default {
       // 表单的验证规则
       loginFormRules: {
         serialNumber: [
-          { required: true, message: '请输入登录用户名', trigger: ['blur', 'change'] },
-          { min: 3, message: '用户名最少需要 3 个字符', tigger: ['blur', 'change'] },
-          { max: 10, message: '用户名不得超过 10 个字符', trigger: ['blur', 'change'] }
+          { required: true, message: '请输入登录账号', trigger: ['blur', 'change'] },
+          { min: 3, message: '账号最少需要 3 个字符', tigger: ['blur', 'change'] },
+          { max: 10, message: '账号不得超过 10 个字符', trigger: ['blur', 'change'] }
         ],
         password: [
           { required: true, message: '请输入登录密码', trigger: ['blur', 'change'] },
           { min: 6, message: '密码最少需要 6 个字符', trigger: ['blur', 'change'] },
           { max: 10, message: '密码不得超过 10 个字符', trigger: ['blur', 'change'] }
         ]
-      }
+      },
+      // 是否显示对话框
+      dialogVisible: 'false'
     }
   },
   methods: {
+    // 学生登录
     studentLogin () {
       this.$refs.loginFormRef.validate(async valid => {
         if (!valid) return
-        // console.log(`/user?serialNumber=${this.loginForm.serialNumber}&password=${this.loginForm.password}`)
-        // const { data: result } = await this.$http.get(`/user?serialNumber=${this.loginForm.serialNumber}&password=${this.loginForm.password}`)
-
         this.$http.get(`/user?serialNumber=${this.loginForm.serialNumber}&password=${this.loginForm.password}`)
           .then(response => {
             // console.log(response)
+            this.$message.success('登录成功')
+            this.$router.push('/home')
           })
           .catch(error => {
+            this.$message('账号或密码错误')
             console.log(error)
           })
       })
     },
+    // 管理员登录
     adminLogin () {
       this.$refs.loginFormRef.validate(valid => {
         if (!valid) return
-        this.$message.success('登陆成功')
-        this.$router.push('/console')
+        this.$http.get(`/admin?serialNumber=${this.loginForm.serialNumber}&password=${this.loginForm.password}`)
+          .then(response => {
+            // console.log(response)
+            this.$message.success('登录成功')
+            this.$router.push('/console')
+          })
+          .catch(error => {
+            this.$message('账号或密码错误')
+            console.log(error)
+          })
       })
+    },
+    // 注册
+    register () {
+      this.dialogVisible = true
     }
   }
 }
