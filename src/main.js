@@ -6,7 +6,7 @@ import './plugins/element.js'
 import './assets/css/global.css'
 
 import axios from 'axios'
-axios.defaults.baseURL = 'http://localhost:10086/api'
+axios.defaults.baseURL = '/api'
 Vue.prototype.$http = axios
 
 Vue.config.productionTip = false

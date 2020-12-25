@@ -56,10 +56,15 @@ export default {
       this.$refs.loginFormRef.validate(async valid => {
         if (!valid) return
         // console.log(`/user?serialNumber=${this.loginForm.serialNumber}&password=${this.loginForm.password}`)
-        const result = await this.$http.get(`/user?serialNumber=${this.loginForm.serialNumber}&password=${this.loginForm.password}`)
-        console.log(result)
-        // this.$message.success('登陆成功')
-        // this.$router.push('/home')
+        // const { data: result } = await this.$http.get(`/user?serialNumber=${this.loginForm.serialNumber}&password=${this.loginForm.password}`)
+
+        this.$http.get(`/user?serialNumber=${this.loginForm.serialNumber}&password=${this.loginForm.password}`)
+          .then(response => {
+            // console.log(response)
+          })
+          .catch(error => {
+            console.log(error)
+          })
       })
     },
     adminLogin () {
