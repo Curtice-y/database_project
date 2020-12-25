@@ -25,6 +25,9 @@
         <el-button @click="sell">确认发布</el-button>
       </el-form-item>
     </el-form>
+    <el-upload class="upload-demo" :headers="{token: fileToken}" action="https://pic-bed.xyz/api/upload?userId=30" :on-preview="handlePreview" :on-success="afterUpload" :on-remove="handleRemove" :file-list="fileList">
+      <el-button size="small" type="primary">asfas</el-button>
+    </el-upload>
   </div>
 </template>
 
@@ -39,7 +42,8 @@ export default {
         description: '',
         seller: '',
         buyer: ''
-      }
+      },
+      fileToken: 'ce3242fa5cbc44f582f21fe81df34a5b'
     }
   },
   created () {
@@ -59,6 +63,16 @@ export default {
     },
     setSeller () {
       this.commodity.seller = window.sessionStorage.getItem('token')
+    },
+    handleRemove (file, fileList) {
+      console.log(file, fileList)
+    },
+    handlePreview (file) {
+      console.log(file)
+    },
+    afterUpload (response) {
+      console.log(response)
+      this.commodity.picture = response
     }
   }
 }
