@@ -26,7 +26,7 @@
       </el-form-item>
     </el-form>
     <el-upload class="upload-demo" :headers="{token: fileToken}" action="https://pic-bed.xyz/api/upload?userId=30" :on-preview="handlePreview" :on-success="afterUpload" :on-remove="handleRemove" :file-list="fileList">
-      <el-button size="small" type="primary">asfas</el-button>
+      <el-button size="small" type="primary">上传图片</el-button>
     </el-upload>
   </div>
 </template>

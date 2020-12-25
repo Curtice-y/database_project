@@ -18,6 +18,7 @@
             </template>
             <el-menu-item index="userinfo">个人信息修改</el-menu-item>
             <el-menu-item index="purchasehis">购买记录</el-menu-item>
+            <el-menu-item index="onsaleself">自售商品</el-menu-item>
             <el-menu-item index="putaway">上架商品</el-menu-item>
           </el-submenu>
           <el-menu-item index="shop">

@@ -6,6 +6,7 @@ import Home from '../components/Home.vue'
 import UserInfo from '../components/user/UserInfo.vue'
 import PurchaseHis from '../components/user/PurchaseHis.vue'
 import Putaway from '../components/user/Putaway.vue'
+import OnSaleSelf from '../components/user/OnSaleSelf.vue'
 import Shop from '../components/Shop.vue'
 
 import Console from '../components/Console.vue'
@@ -27,7 +28,8 @@ const router = new Router({
         { path: '/userinfo', component: UserInfo },
         { path: '/purchasehis', component: PurchaseHis },
         { path: '/putaway', component: Putaway },
-        { path: '/shop', component: Shop }
+        { path: '/shop', component: Shop },
+        { path: '/OnSaleSelf', component: OnSaleSelf }
       ]
     },
     {
