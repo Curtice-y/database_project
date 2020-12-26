@@ -3,7 +3,7 @@
         <el-breadcrumb separator-class="el-icon-arrow-right">
             <el-breadcrumb-item>首页</el-breadcrumb-item>
             <el-breadcrumb-item>个人信息</el-breadcrumb-item>
-            <el-breadcrumb-item>购买记录</el-breadcrumb-item>
+            <el-breadcrumb-item>自售商品</el-breadcrumb-item>
         </el-breadcrumb>
         <el-table ref="commodityRef" :data="recordList" stripe style="width: 100%">
             <el-table-column label="名称" prop="name" width="120px"></el-table-column>
@@ -12,7 +12,7 @@
             <el-table-column label="描述" prop="description" width="300px"></el-table-column>
             <el-table-column label="图片" prop="picture" width="125px">
               <template slot-scope="scope">
-                <img :src="scope.row.picture" width="100" height="50" class="tableImg"/>
+                <img :src="scope.row.picture" width="70" height="70" class="tableImg"/>
               </template>
             </el-table-column>
             <el-table-column label="状态" Prop="status">
@@ -29,6 +29,7 @@
                 </p>
               </template>
             </el-table-column>
+            <el-table-column label="评价" prop="comment" width="300px"></el-table-column>
         </el-table>
         <!-- 确认框 -->
         <el-dialog title="确认订单已发货？" :visible.sync="confirmVisible" width="50%" @close='confirmClose' :append-to-body="true">

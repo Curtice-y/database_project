@@ -7,7 +7,7 @@
         <el-tab-pane label="List">
             <ul  class=" cookList ">
                 <li v-for="item in ItemList" :key="item">
-                <span class="foodImg"><img :src="item.picture" width="50" height="50"></span>
+                <span class="foodImg"><img :src="item.picture" width="100" height="100"></span>
                 <span class="Left">{{item.name}}</span>
                 <span class="Right"><el-button type="primary" @click="open(item.id)">购买</el-button></span>
                 <span class="foodPrice">￥{{ item.price}}元</span>
