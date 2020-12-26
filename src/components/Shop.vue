@@ -7,9 +7,10 @@
         <el-tab-pane label="List">
             <ul  class=" cookList ">
                 <li v-for="item in ItemList" :key="item">
-                <span class="foodImg"><img :src="item.picture" width="100" height="100"></span>
+                <span class="foodImg"><img :src="item.picture"></span>
                 <span class="Left">{{item.name}}</span>
                 <span class="Right"><el-button type="primary" @click="open(item.id)">购买</el-button></span>
+                <span class="Description">{{item.description}}</span>
                 <span class="foodPrice">￥{{ item.price}}元</span>
                 </li>
             </ul>
@@ -74,15 +75,17 @@ export default {
 
 <style lang="less" scoped>
 .cookList li{
-    width: 20%;
+    display: flex;
+    flex-wrap: wrap;
+    width: 300px;
+    height: 400px;
     border:1px solid #E5E9F2;
     background-color:rgb(185, 184, 184);
-    padding: 2px;
+    padding: 10px;
     float:left;
     margin: 2px;
    }
    .cookList li span{
-       
         display: block;
         float:left;
    }
@@ -98,23 +101,28 @@ export default {
         }
    }
    .Left{
-       width: 40%;
-       font-size: 25px;
+       width: 45%;
+       font-size: 20px;
        padding-top: 10px;
        padding-left: 10px;
        color:black;
    }
    .foodPrice{
        color: red;
-       width: 50%;
-       font-size: 16px;
+       width: 100%;
+       font-size: 20px;
        padding-left: 10px;
        padding-top:10px;
+   }
+   .Description{
+       padding: 10px;
+       font-size: 20px;
+       color: grey;
    }
    .Right{
       width: 40%;
       padding-top: 5px;
-      padding-left: 50px;
+      padding-left: 20px;
       float: left;
    }
 </style>

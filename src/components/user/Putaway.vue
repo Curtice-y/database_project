@@ -18,9 +18,6 @@
       <el-form-item label="描述" prop="description">
         <el-input v-model="commodity.description"></el-input>
       </el-form-item>
-      <el-form-item label="买家" prop="buyer">
-        <el-input v-model="commodity.buyer"></el-input>
-      </el-form-item>
       <el-form-item class="btns">
         <el-button @click="sell">确认发布</el-button>
       </el-form-item>

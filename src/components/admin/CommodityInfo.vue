@@ -8,10 +8,16 @@
       <el-table-column label="商品id" prop="id" width="80px"></el-table-column>
       <el-table-column label="名称" prop="name" width="120px"></el-table-column>
       <el-table-column label="价格" prop="price" width="85px"></el-table-column>
-      <el-table-column label="图片" prop="picture" width="85px"></el-table-column>
-      <el-table-column label="描述" prop="description" width="150px"></el-table-column>
-      <el-table-column label="卖家" prop="seller" width="100px"></el-table-column>
-      <el-table-column label="买家" prop="buyer" width="100px"></el-table-column>
+      <el-table-column label="图片" prop="picture" width="100px">
+        <template slot-scope="scope">
+          <img :src="scope.row.picture" width="70" height="70" class="tableImg"/>
+        </template>
+      </el-table-column>
+      <el-table-column label="描述" prop="description" width="250px"></el-table-column>
+      <el-table-column label="卖家" prop="seller" width="150px"></el-table-column>
+      <el-table-column label="买家" prop="buyer" width="150px"></el-table-column>
+      <el-table-column label="状态" prop="status" width="100px"></el-table-column>
+      <el-table-column label="评价" prop="comment" width="350px"></el-table-column>
     </el-table>
     <el-button @click="dialogVisible = true">下架商品</el-button>
     <el-dialog title="下架商品ID" :visible.sync="dialogVisible" :append-to-body="true" @close='dialogClose'>
